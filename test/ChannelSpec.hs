@@ -4,7 +4,6 @@ module ChannelSpec (main, spec) where
 
 import Test.Hspec
 import Network.AMQP
-import Network.AMQP.Internal (channelID)
 
 main :: IO ()
 main = hspec spec
@@ -19,9 +18,9 @@ spec = do
                 ch2  <- openChannel conn
                 ch3  <- openChannel conn
 
-                channelID ch1 `shouldBe` 1
-                channelID ch2 `shouldBe` 2
-                channelID ch3 `shouldBe` 3
+                getChannelID ch1 `shouldBe` 1
+                getChannelID ch2 `shouldBe` 2
+                getChannelID ch3 `shouldBe` 3
 
                 closeConnection conn
 
