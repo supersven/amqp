@@ -75,6 +75,7 @@ module Network.AMQP (
     addChannelExceptionHandler,
     isNormalChannelClose,
     qos,
+    getChannelID,
 
     -- * Exchanges
     ExchangeOpts(..),
@@ -703,6 +704,11 @@ qos chan prefetchSize prefetchCount global = do
         prefetchCount
         global
     return ()
+
+-- | Get the channel ID of a 'Channel'. This provides access to the internal
+-- channel ID without requiring imports from internal modules.
+getChannelID :: Channel -> Word16
+getChannelID = channelID
 
 -- | Parses an AMQP standard URI of the form @amqp://user:password\@host:port\/vhost@ and returns a 'ConnectionOpts' for use with 'openConnection'''.
 --
